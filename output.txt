@@ -1,0 +1,26 @@
+total 880
+drwxr-xr-x. 1 roney roney    484 Feb  3 03:59 .
+drwxr-xr-x. 1 roney roney    666 Feb  3 03:48 ..
+-rw-r--r--. 1 roney roney   1725 Feb  3 03:48 AGENTS.md
+-rw-r--r--. 1 roney roney 256720 Feb  3 03:48 bun.lock
+-rw-r--r--. 1 roney roney    451 Feb  3 03:48 components.json
+-rw-r--r--. 1 roney roney    921 Feb  3 03:48 eslint.config.mjs
+drwxr-xr-x. 1 roney roney    150 Feb  3 03:59 .git
+-rw-r--r--. 1 roney roney    423 Feb  3 03:48 .gitignore
+-rw-r--r--. 1 roney roney    412 Feb  3 03:59 git_remote.txt
+drwxr-xr-x. 1 roney roney    636 Feb  3 03:54 .next
+-rw-r--r--. 1 roney roney    417 Feb  3 03:53 next.config.ts
+-rw-r--r--. 1 roney roney    211 Feb  3 03:54 next-env.d.ts
+drwxr-xr-x. 1 roney roney  14084 Feb  3 03:53 node_modules
+-rw-r--r--. 1 roney roney     22 Feb  3 03:51 .npmrc
+drwxr-xr-x. 1 roney roney     24 Feb  3 03:48 .orchids
+-rw-r--r--. 1 roney roney      0 Feb  3 03:59 output.txt
+-rw-r--r--. 1 roney roney   4213 Feb  3 03:51 package.json
+-rw-r--r--. 1 roney roney 578600 Feb  3 03:53 package-lock.json
+-rw-r--r--. 1 roney roney     94 Feb  3 03:48 postcss.config.mjs
+drwxr-xr-x. 1 roney roney     90 Feb  3 03:48 public
+-rw-r--r--. 1 roney roney   1450 Feb  3 03:48 README.md
+drwxr-xr-x. 1 roney roney     80 Feb  3 03:48 src
+-rw-r--r--. 1 roney roney      6 Feb  3 03:59 test.txt
+-rw-r--r--. 1 roney roney    717 Feb  3 03:48 tsconfig.json
+-rw-r--r--. 1 roney roney    122 Feb  3 03:51 vercel.json
