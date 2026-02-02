@@ -4,18 +4,18 @@ import { useState } from 'react';
 import { useWaste, WasteType, WASTE_RATES, WASTE_DESCRIPTIONS } from '@/context/WasteContext';
 import { SDGLogo } from '@/components/SDGLogo';
 import { YuktiLogo } from '@/components/YuktiLogo';
-import { 
-  Trash2, 
-  Truck, 
-  Clock, 
-  CheckCircle2, 
-  Info, 
-  Coins, 
-  TriangleAlert, 
-  Camera, 
-  Zap, 
-  MapPin, 
-  User, 
+import {
+  Trash2,
+  Truck,
+  Clock,
+  CheckCircle2,
+  Info,
+  Coins,
+  TriangleAlert,
+  Camera,
+  Zap,
+  MapPin,
+  User,
   Phone,
   Calendar,
   ChevronRight,
@@ -41,11 +41,11 @@ export default function CitizenView() {
   const { households, addPickup, reportBinOverflow, pickups, citizenPoints, collectorLocation } = useWaste();
   const [activeTab, setActiveTab] = useState<'pickup' | 'overflow' | 'history'>('pickup');
 
-    return (
-      <div className="flex flex-col h-full bg-zinc-50/50 p-6">
-        {/* Navigation Tabs */}
-        <div className="flex p-1 bg-zinc-200/50 rounded-2xl gap-1">
-        <button 
+  return (
+    <div className="flex flex-col h-full bg-zinc-50/50 p-6">
+      {/* Navigation Tabs */}
+      <div className="flex p-1 bg-zinc-200/50 rounded-2xl gap-1">
+        <button
           onClick={() => setActiveTab('pickup')}
           className={cn(
             "flex-1 py-2 px-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all",
@@ -54,7 +54,7 @@ export default function CitizenView() {
         >
           Schedule Pickup
         </button>
-        <button 
+        <button
           onClick={() => setActiveTab('overflow')}
           className={cn(
             "flex-1 py-2 px-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all",
@@ -63,7 +63,7 @@ export default function CitizenView() {
         >
           Report Overflow
         </button>
-        <button 
+        <button
           onClick={() => setActiveTab('history')}
           className={cn(
             "flex-1 py-2 px-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all",
@@ -74,21 +74,19 @@ export default function CitizenView() {
         </button>
       </div>
 
-      <ScrollArea className="flex-1 mt-6">
-        <div className="pr-4">
+      <div className="flex-1 overflow-y-auto mt-6 pr-4 custom-scrollbar">
         {activeTab === 'pickup' && <SchedulePickupForm households={households} addPickup={addPickup} citizenPoints={citizenPoints} />}
         {activeTab === 'overflow' && <ReportOverflowForm reportBinOverflow={reportBinOverflow} />}
         {activeTab === 'history' && <PickupHistory pickups={pickups} />}
-        </div>
-      </ScrollArea>
+      </div>
     </div>
   );
 }
 
-function SchedulePickupForm({ households, addPickup, citizenPoints }: { 
-  households: any[], 
-  addPickup: (req: any) => void, 
-  citizenPoints: number 
+function SchedulePickupForm({ households, addPickup, citizenPoints }: {
+  households: any[],
+  addPickup: (req: any) => void,
+  citizenPoints: number
 }) {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -134,7 +132,7 @@ function SchedulePickupForm({ households, addPickup, citizenPoints }: {
             </h2>
             <p className="text-xs font-medium text-zinc-400 mt-2">Targeting Source Segregation in Guwahati Urban Wards.</p>
           </div>
-          
+
           <div className="bg-zinc-950 text-white rounded-2xl p-4 shadow-xl flex items-center gap-3 border border-white/10">
             <div className="bg-green-500/20 p-2 rounded-xl">
               <Zap className="h-5 w-5 text-green-400 fill-green-400" />
@@ -150,21 +148,21 @@ function SchedulePickupForm({ households, addPickup, citizenPoints }: {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label className="text-[9px] font-black uppercase tracking-[0.1em] text-zinc-400 ml-1">Full Name</Label>
-              <Input 
-                placeholder="Arjun Das" 
+              <Input
+                placeholder="Arjun Das"
                 className="bg-zinc-50 border-none rounded-2xl h-12 px-5 font-bold text-sm focus:ring-2 focus:ring-green-500/20"
                 value={formData.fullName}
-                onChange={(e) => setFormData({...formData, fullName: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                 required
               />
             </div>
             <div className="space-y-2">
               <Label className="text-[9px] font-black uppercase tracking-[0.1em] text-zinc-400 ml-1">Phone Number</Label>
-              <Input 
-                placeholder="+91 98765 43210" 
+              <Input
+                placeholder="+91 98765 43210"
                 className="bg-zinc-50 border-none rounded-2xl h-12 px-5 font-bold text-sm focus:ring-2 focus:ring-green-500/20"
                 value={formData.phone}
-                onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 required
               />
             </div>
@@ -172,7 +170,7 @@ function SchedulePickupForm({ households, addPickup, citizenPoints }: {
 
           <div className="space-y-2">
             <Label className="text-[9px] font-black uppercase tracking-[0.1em] text-zinc-400 ml-1">Guwahati Ward / Area</Label>
-            <Select onValueChange={(v) => setFormData({...formData, householdId: v})} value={formData.householdId}>
+            <Select onValueChange={(v) => setFormData({ ...formData, householdId: v })} value={formData.householdId}>
               <SelectTrigger className="bg-zinc-50 border-none rounded-2xl h-14 px-5 font-bold text-sm">
                 <div className="flex items-center gap-2">
                   <MapPin className="h-4 w-4 text-green-600" />
@@ -199,11 +197,11 @@ function SchedulePickupForm({ households, addPickup, citizenPoints }: {
                 <button
                   key={type}
                   type="button"
-                  onClick={() => setFormData({...formData, type})}
+                  onClick={() => setFormData({ ...formData, type })}
                   className={cn(
                     "flex items-center gap-4 p-4 rounded-2xl border-2 transition-all text-left",
-                    formData.type === type 
-                      ? "bg-white border-green-600 text-zinc-900 shadow-lg" 
+                    formData.type === type
+                      ? "bg-white border-green-600 text-zinc-900 shadow-lg"
                       : "bg-zinc-50 border-transparent text-zinc-400 hover:bg-zinc-100"
                   )}
                 >
@@ -233,11 +231,11 @@ function SchedulePickupForm({ households, addPickup, citizenPoints }: {
                 <button
                   key={slot}
                   type="button"
-                  onClick={() => setFormData({...formData, slot: slot.toLowerCase()})}
+                  onClick={() => setFormData({ ...formData, slot: slot.toLowerCase() })}
                   className={cn(
                     "py-4 rounded-2xl border-2 transition-all font-bold text-sm capitalize",
                     formData.slot === slot.toLowerCase()
-                      ? "bg-zinc-900 border-zinc-900 text-white shadow-lg" 
+                      ? "bg-zinc-900 border-zinc-900 text-white shadow-lg"
                       : "bg-zinc-50 border-transparent text-zinc-400 hover:bg-zinc-100"
                   )}
                 >
@@ -248,15 +246,15 @@ function SchedulePickupForm({ households, addPickup, citizenPoints }: {
           </div>
 
           <div className="flex items-center gap-4 pt-4">
-            <Button 
-              type="submit" 
+            <Button
+              type="submit"
               className="flex-1 bg-green-600 hover:bg-green-700 text-white rounded-[24px] h-16 font-black text-lg shadow-xl shadow-green-600/20 active:scale-95 transition-transform"
             >
               Confirm Schedule
             </Button>
-            <button 
-              type="button" 
-              onClick={() => setFormData({...formData, fullName: '', householdId: ''})}
+            <button
+              type="button"
+              onClick={() => setFormData({ ...formData, fullName: '', householdId: '' })}
               className="text-sm font-bold text-zinc-900 px-4"
             >
               Reset
@@ -328,11 +326,11 @@ function ReportOverflowForm({ reportBinOverflow }: { reportBinOverflow: (loc: st
             <Label className="text-[9px] font-black uppercase tracking-[0.1em] text-zinc-400 ml-1">Exact Location / Landmark</Label>
             <div className="relative">
               <MapPin className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-zinc-400" />
-              <Input 
-                placeholder="Near Ganeshguri Flyover, Guwahati" 
+              <Input
+                placeholder="Near Ganeshguri Flyover, Guwahati"
                 className="bg-zinc-50 border-none rounded-2xl h-14 pl-12 pr-5 font-bold text-sm focus:ring-2 focus:ring-orange-500/20"
                 value={formData.location}
-                onChange={(e) => setFormData({...formData, location: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                 required
               />
             </div>
@@ -340,11 +338,11 @@ function ReportOverflowForm({ reportBinOverflow }: { reportBinOverflow: (loc: st
 
           <div className="space-y-2">
             <Label className="text-[9px] font-black uppercase tracking-[0.1em] text-zinc-400 ml-1">Contextual Description</Label>
-            <Textarea 
-              placeholder="Describe the accumulation level and waste types..." 
+            <Textarea
+              placeholder="Describe the accumulation level and waste types..."
               className="bg-zinc-50 border-none rounded-[24px] min-h-[140px] px-5 py-4 font-bold text-sm resize-none focus:ring-2 focus:ring-orange-500/20"
               value={formData.description}
-              onChange={(e) => setFormData({...formData, description: e.target.value})}
+              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
             />
           </div>
 
@@ -359,8 +357,8 @@ function ReportOverflowForm({ reportBinOverflow }: { reportBinOverflow: (loc: st
           </div>
 
           <div className="flex items-center gap-4 pt-4">
-            <Button 
-              type="submit" 
+            <Button
+              type="submit"
               className="flex-1 bg-orange-600 hover:bg-orange-700 text-white rounded-[24px] h-16 font-black text-lg shadow-xl shadow-orange-600/20 active:scale-95 transition-transform"
             >
               Initiate Urgent Cleanup
