@@ -11,7 +11,7 @@ import { Badge } from '@/components/ui/badge';
 import { useWaste } from '@/context/WasteContext';
 
 // Dynamically import Map to avoid SSR issues
-const Map = dynamic(() => import('@/components/Map'), { 
+const Map = dynamic(() => import('@/components/Map'), {
   ssr: false,
   loading: () => <div className="h-full w-full bg-zinc-100 animate-pulse flex items-center justify-center">Loading Live Map...</div>
 });
@@ -22,11 +22,11 @@ export default function LandingPage() {
     <div className="min-h-screen bg-white text-zinc-900 font-sans selection:bg-green-100 selection:text-green-900">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-zinc-100 px-6 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <YuktiLogo className="h-8 w-8" />
-            <span className="text-xl font-black tracking-tighter uppercase italic text-green-600">YUKTI</span>
-            <Badge variant="outline" className="ml-2 border-green-200 text-green-600 text-[10px] font-black tracking-widest uppercase">SDG 12</Badge>
-          </div>
+        <div className="flex items-center gap-2">
+          <YuktiLogo className="h-8 w-8" />
+          <span className="text-xl font-black tracking-tighter uppercase italic text-green-600">YUKTI</span>
+          <Badge variant="outline" className="ml-2 border-green-200 text-green-600 text-[10px] font-black tracking-widest uppercase">SDG 12</Badge>
+        </div>
 
         <div className="flex gap-4">
           <Link href="/citizen">
@@ -41,7 +41,7 @@ export default function LandingPage() {
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
@@ -71,28 +71,28 @@ export default function LandingPage() {
             </div>
           </motion.div>
 
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative h-[500px] lg:h-[650px] bg-zinc-100 rounded-[3rem] overflow-hidden border-8 border-white shadow-2xl z-0"
-            >
-               <div className="absolute inset-0 z-0 opacity-80 grayscale-[0.2]">
-                  <Map pickups={pickups.slice(0, 15)} zoom={12} isLanding={true} />
-               </div>
-               <div className="absolute inset-0 bg-gradient-to-tr from-green-500/10 to-transparent pointer-events-none z-10" />
-               
-               {/* Floating Stats */}
-               <div className="absolute top-10 left-10 p-6 bg-white/90 backdrop-blur shadow-2xl rounded-3xl border border-white space-y-2 z-20">
-                  <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Live Feed</p>
-                  <p className="text-4xl font-black">GUWAHATI</p>
-               </div>
-               
-               <div className="absolute bottom-10 right-10 p-6 bg-zinc-900 shadow-2xl rounded-3xl border border-zinc-800 space-y-2 text-white z-20">
-                  <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Active Nodes</p>
-                  <p className="text-4xl font-black text-green-400">{pickups.length}+</p>
-               </div>
-            </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative h-[500px] lg:h-[650px] bg-zinc-100 rounded-[3rem] overflow-hidden border-8 border-white shadow-2xl z-0"
+          >
+            <div className="absolute inset-0 z-0 opacity-80 grayscale-[0.2]">
+              <Map pickups={pickups.slice(0, 15)} zoom={12} isLanding={true} />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-green-500/10 to-transparent pointer-events-none z-10" />
+
+            {/* Floating Stats */}
+            <div className="absolute top-10 left-10 p-6 bg-white/90 backdrop-blur shadow-2xl rounded-3xl border border-white space-y-2 z-20">
+              <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Live Feed</p>
+              <p className="text-4xl font-black">GUWAHATI</p>
+            </div>
+
+            <div className="absolute bottom-10 right-10 p-6 bg-zinc-900 shadow-2xl rounded-3xl border border-zinc-800 space-y-2 text-white z-20">
+              <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Active Nodes</p>
+              <p className="text-4xl font-black text-green-400">{pickups.length}+</p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -103,10 +103,10 @@ export default function LandingPage() {
             <h2 className="text-4xl font-black tracking-tight">Simple Process</h2>
             <p className="text-zinc-500 font-medium">From request to collection in 4 easy steps</p>
           </div>
-          
+
           <div className="grid md:grid-cols-4 gap-8 relative">
             <div className="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-zinc-100 -z-10" />
-            
+
             {[
               { step: 1, title: "Select Location", desc: "Choose your household from 50+ registered locations" },
               { step: 2, title: "Choose Waste Type", desc: "Wet, Dry, or E-Waste with source segregation" },
@@ -135,7 +135,7 @@ export default function LandingPage() {
               <h2 className="text-5xl font-black tracking-tighter uppercase italic">Targeting <span className="text-green-400">Source Segregation</span></h2>
               <p className="text-zinc-400 text-lg font-medium">Following Assam Government market trends for Urban Wards in Guwahati.</p>
             </div>
-            
+
             <div className="space-y-6">
               <div className="flex gap-6 p-6 rounded-[2rem] bg-white/5 border border-white/10">
                 <div className="h-14 w-14 shrink-0 rounded-2xl bg-green-500/20 flex items-center justify-center text-green-400">
@@ -177,7 +177,7 @@ export default function LandingPage() {
               </div>
             </div>
           </div>
-          
+
           <div className="relative">
             <div className="absolute -inset-20 bg-green-500/20 blur-[100px] rounded-full" />
             <div className="relative p-8 bg-zinc-800 rounded-[3rem] border border-zinc-700 shadow-2xl">
@@ -224,7 +224,7 @@ export default function LandingPage() {
               <h3 className="text-2xl font-black tracking-tight">Geo-Precision</h3>
               <p className="text-zinc-500 font-medium">Pin-point accuracy for pickup requests using real-time geolocation mapping across Guwahati wards.</p>
             </div>
-            
+
             <div className="space-y-4 p-8 bg-white rounded-[2rem] shadow-sm border border-zinc-100">
               <div className="h-12 w-12 bg-indigo-100 rounded-2xl flex items-center justify-center text-indigo-600">
                 <Truck className="h-6 w-6" />
@@ -232,7 +232,7 @@ export default function LandingPage() {
               <h3 className="text-2xl font-black tracking-tight">Smart Routing</h3>
               <p className="text-zinc-500 font-medium">Optimized paths using the Greedy Nearest Neighbor algorithm to reduce fuel and time for urban collectors.</p>
             </div>
-            
+
             <div className="space-y-4 p-8 bg-white rounded-[2rem] shadow-sm border border-zinc-100">
               <div className="h-12 w-12 bg-amber-100 rounded-2xl flex items-center justify-center text-amber-600">
                 <ShieldCheck className="h-6 w-6" />
@@ -247,40 +247,71 @@ export default function LandingPage() {
       {/* Stats/Guwahati Focus */}
       <section className="py-24 px-6 border-t border-zinc-100">
         <div className="max-w-7xl mx-auto flex flex-col items-center text-center space-y-12">
-           <div className="space-y-4">
-             <h2 className="text-5xl font-black tracking-tighter uppercase italic">Serving <span className="text-green-600 underline decoration-4 underline-offset-8">Guwahati</span></h2>
-             <p className="text-xl text-zinc-500 font-medium max-w-2xl">Covering major hubs from Maligaon to Six Mile, Beltola to Chandmari. Our mission is a cleaner Gateway to Northeast India.</p>
-           </div>
-           
-           <div className="flex flex-wrap justify-center gap-12">
-              <div className="text-center">
-                <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">Coverage Areas</p>
-                <p className="text-5xl font-black tracking-tighter">12+</p>
-              </div>
-              <div className="text-center">
-                <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">Daily Capacity</p>
-                <p className="text-5xl font-black tracking-tighter">5.2T</p>
-              </div>
-              <div className="text-center">
-                <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">Citizen Rating</p>
-                <p className="text-5xl font-black tracking-tighter">4.9/5</p>
-              </div>
-           </div>
+          <div className="space-y-4">
+            <h2 className="text-5xl font-black tracking-tighter uppercase italic">Serving <span className="text-green-600 underline decoration-4 underline-offset-8">Guwahati</span></h2>
+            <p className="text-xl text-zinc-500 font-medium max-w-2xl">Covering major hubs from Maligaon to Six Mile, Beltola to Chandmari. Our mission is a cleaner Gateway to Northeast India.</p>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-12">
+            <div className="text-center">
+              <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">Coverage Areas</p>
+              <p className="text-5xl font-black tracking-tighter">12+</p>
+            </div>
+            <div className="text-center">
+              <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">Daily Capacity</p>
+              <p className="text-5xl font-black tracking-tighter">5.2T</p>
+            </div>
+            <div className="text-center">
+              <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">Citizen Rating</p>
+              <p className="text-5xl font-black tracking-tighter">4.9/5</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-12 px-6 border-t border-zinc-100 bg-white">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-2">
-            <YuktiLogo className="h-6 w-6" />
-            <span className="text-lg font-black tracking-tighter uppercase italic text-green-600">YUKTI</span>
+      {/* Footer Branding */}
+      <footer className="py-24 px-6 border-t border-zinc-100 bg-white">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
+          <div className="md:col-span-1 space-y-4">
+            <div className="flex items-center gap-2">
+              <YuktiLogo className="h-6 w-6" />
+              <span className="text-lg font-black tracking-tighter uppercase italic text-green-600">YUKTI</span>
+            </div>
+            <p className="text-xs text-zinc-400 font-medium leading-relaxed">
+              Smart Source Segregation & Optimized Ward Collection platform for Guwahati Municipal Corporation.
+            </p>
           </div>
-          <p className="text-sm font-bold text-zinc-400 uppercase tracking-widest">© 2026 Guwahati Municipal Corporation x YUKTI</p>
-          <div className="flex gap-6">
-            <Globe className="h-5 w-5 text-zinc-300 hover:text-green-600 cursor-pointer" />
-            <Zap className="h-5 w-5 text-zinc-300 hover:text-green-600 cursor-pointer" />
+
+          <div className="space-y-4">
+            <h4 className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Contact</h4>
+            <p className="text-xs font-bold text-zinc-500">support@yukti.gov.in</p>
+            <p className="text-xs font-bold text-zinc-500">+91 1800-345-6789</p>
+            <p className="text-xs font-bold text-zinc-500">Panbazar, Guwahati, Assam</p>
           </div>
+
+          <div className="space-y-4">
+            <h4 className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Resources</h4>
+            <p className="text-xs font-bold text-zinc-500 cursor-pointer hover:text-green-600 transition-colors">Waste Guidelines</p>
+            <p className="text-xs font-bold text-zinc-500 cursor-pointer hover:text-green-600 transition-colors">Schedule FAQ</p>
+            <p className="text-xs font-bold text-zinc-500 cursor-pointer hover:text-green-600 transition-colors">Rewards Program</p>
+          </div>
+
+          <div className="space-y-4">
+            <h4 className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Initiative</h4>
+            <p className="text-xs font-medium text-zinc-400">
+              Built for SDG-12 | Responsible Consumption and Production. Guwahati Smart Ward Prototype v1.0
+            </p>
+            <div className="flex items-center gap-2">
+              <SDGLogo className="h-8 w-8 opacity-50 grayscale hover:grayscale-0 transition-all cursor-pointer" />
+              <span className="text-[10px] font-bold text-zinc-300 uppercase tracking-widest">Goal 12 Aligned</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-zinc-50 text-center">
+          <p className="text-[10px] font-bold text-zinc-300 uppercase tracking-[0.2em]">
+            © 2026 Guwahati Municipal Corporation. All rights reserved.
+          </p>
         </div>
       </footer>
     </div>

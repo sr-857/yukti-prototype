@@ -4,13 +4,13 @@ import React from 'react';
 import { useWaste } from '@/context/WasteContext';
 import { YuktiLogo } from '@/components/YuktiLogo';
 import { SDGLogo } from '@/components/SDGLogo';
-import { 
-  Coins, 
-  ShoppingBag, 
-  Leaf, 
-  FileText, 
-  ArrowRight, 
-  TrendingUp, 
+import {
+  Coins,
+  ShoppingBag,
+  Leaf,
+  FileText,
+  ArrowRight,
+  TrendingUp,
   Zap,
   CheckCircle2,
   Share2,
@@ -120,15 +120,19 @@ export default function GreenWallet() {
                       <h3 className="text-xl font-black text-[#1E293B]">{benefit.title}</h3>
                       <p className="text-sm text-zinc-400 font-medium">{benefit.partner}</p>
                     </div>
-                    
+
                     <div className="mt-6 flex items-center justify-between">
-                      <Button 
+                      <Button
+                        onClick={() => {
+                          if (citizenPoints >= benefit.points) {
+                            alert(`🎉 Success! Your voucher for ${benefit.title} has been sent to your registered email.`);
+                          }
+                        }}
                         disabled={citizenPoints < benefit.points}
-                        className={`rounded-2xl h-12 px-8 font-black text-sm uppercase tracking-widest transition-all ${
-                          citizenPoints >= benefit.points 
-                            ? 'bg-green-600 hover:bg-green-700 text-white shadow-lg shadow-green-200' 
+                        className={`rounded-2xl h-12 px-8 font-black text-sm uppercase tracking-widest transition-all ${citizenPoints >= benefit.points
+                            ? 'bg-green-600 hover:bg-green-700 text-white shadow-lg shadow-green-200'
                             : 'bg-zinc-100 text-zinc-400'
-                        }`}
+                          }`}
                       >
                         {citizenPoints >= benefit.points ? 'Redeem Voucher' : 'Insufficient Balance'}
                       </Button>
@@ -153,7 +157,7 @@ export default function GreenWallet() {
               <TrendingUp className="h-6 w-6 text-green-600" />
               <h2 className="text-2xl font-black tracking-tight text-[#1E293B]">Recent Earnings</h2>
             </div>
-            
+
             <Card className="border-none shadow-[0_10px_30px_rgba(0,0,0,0.02)] rounded-[2rem] overflow-hidden">
               <CardContent className="p-6">
                 <ScrollArea className="h-[300px]">
@@ -166,7 +170,7 @@ export default function GreenWallet() {
                         <p className="text-zinc-400 text-sm font-medium">No recent earnings yet.</p>
                       </div>
                     )}
-                    
+
                     {completedPickups.map((p, idx) => (
                       <div key={p.id} className="flex items-start gap-4 group">
                         <div className="mt-1 bg-green-50 text-green-600 p-2 rounded-xl group-hover:bg-green-600 group-hover:text-white transition-colors">
@@ -198,7 +202,7 @@ export default function GreenWallet() {
                     </div>
                   </div>
                 </ScrollArea>
-                
+
                 <Button variant="ghost" className="w-full mt-6 text-green-600 font-black text-xs uppercase tracking-widest">
                   Full History
                 </Button>
@@ -220,7 +224,13 @@ export default function GreenWallet() {
                 Help your community stay clean and earn 100 GP for every successful referral.
               </p>
             </div>
-            <Button className="w-full h-14 bg-green-600 hover:bg-green-700 text-white font-black text-sm uppercase tracking-widest rounded-2xl shadow-xl shadow-green-200">
+            <Button
+              onClick={() => {
+                navigator.clipboard.writeText('https://yukti.gov.in/refer/CITIZEN857');
+                alert('🚀 Referral link copied to clipboard!');
+              }}
+              className="w-full h-14 bg-green-600 hover:bg-green-700 text-white font-black text-sm uppercase tracking-widest rounded-2xl shadow-xl shadow-green-200"
+            >
               Share Referral Link
             </Button>
           </Card>
@@ -238,7 +248,7 @@ export default function GreenWallet() {
             Smart Source Segregation & Optimized Ward Collection platform for Guwahati Municipal Corporation.
           </p>
         </div>
-        
+
         <div className="space-y-4">
           <h4 className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Contact</h4>
           <p className="text-xs font-bold text-zinc-500">support@yukti.gov.in</p>
@@ -261,7 +271,7 @@ export default function GreenWallet() {
           <SDGLogo className="h-8 w-8 opacity-50 grayscale hover:grayscale-0 transition-all cursor-pointer" />
         </div>
       </footer>
-      
+
       <div className="text-center py-8">
         <p className="text-[10px] font-bold text-zinc-300 uppercase tracking-[0.2em]">
           © 2026 Guwahati Municipal Corporation. All rights reserved.
