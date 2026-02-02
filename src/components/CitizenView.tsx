@@ -290,14 +290,15 @@ function SchedulePickupForm({ households, addPickup, citizenPoints }: {
 function ReportOverflowForm({ reportBinOverflow }: { reportBinOverflow: (loc: string, desc: string) => void }) {
   const [formData, setFormData] = useState({
     location: '',
-    description: ''
+    description: '',
+    image: null as File | null
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (formData.location) {
       reportBinOverflow(formData.location, formData.description);
-      setFormData({ location: '', description: '' });
+      setFormData({ location: '', description: '', image: null });
       alert("⚠️ Overflow Reported! Our rapid response team has been dispatched.");
     } else {
       alert("Please provide the location of the overflow.");
@@ -346,13 +347,36 @@ function ReportOverflowForm({ reportBinOverflow }: { reportBinOverflow: (loc: st
             />
           </div>
 
-          <div className="border-2 border-dashed border-zinc-100 rounded-[32px] p-10 flex flex-col items-center justify-center gap-3 group hover:border-orange-200 transition-colors cursor-pointer bg-zinc-50/50">
-            <div className="bg-white shadow-md p-4 rounded-2xl text-zinc-300 group-hover:text-orange-600 transition-colors">
+          <div
+            onClick={() => document.getElementById('visual-evidence-input')?.click()}
+            className={cn(
+              "border-2 border-dashed rounded-[32px] p-10 flex flex-col items-center justify-center gap-3 group transition-all cursor-pointer",
+              formData.image ? "border-orange-500 bg-orange-50/50" : "border-zinc-100 bg-zinc-50/50 hover:border-orange-200"
+            )}
+          >
+            <input
+              id="visual-evidence-input"
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) setFormData({ ...formData, image: file });
+              }}
+            />
+            <div className={cn(
+              "shadow-md p-4 rounded-2xl transition-colors",
+              formData.image ? "bg-orange-600 text-white" : "bg-white text-zinc-300 group-hover:text-orange-600"
+            )}>
               <Camera className="h-8 w-8" />
             </div>
             <div className="text-center">
-              <p className="text-sm font-black text-zinc-900">Upload Visual Evidence</p>
-              <p className="text-[10px] font-medium text-zinc-400 mt-1">Direct upload to GMC Monitoring Command.</p>
+              <p className="text-sm font-black text-zinc-900">
+                {formData.image ? formData.image.name : "Upload Visual Evidence"}
+              </p>
+              <p className="text-[10px] font-medium text-zinc-400 mt-1">
+                {formData.image ? "Image selected successfully" : "Direct upload to GMC Monitoring Command."}
+              </p>
             </div>
           </div>
 
