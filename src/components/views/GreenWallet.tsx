@@ -5,17 +5,16 @@ import { useWaste } from '@/core/context/WasteContext';
 import { YuktiLogo } from '@/components/logos/YuktiLogo';
 import { SDGLogo } from '@/components/logos/SDGLogo';
 import {
-  Coins,
-  ShoppingBag,
-  Leaf,
-  FileText,
-  ArrowRight,
-  TrendingUp,
-  Zap,
-  CheckCircle2,
+  Percent,
+  Tag,
+  Trophy,
   Share2,
   Gift,
-  LayoutGrid
+  LayoutGrid,
+  Zap,
+  ArrowRight,
+  TrendingUp,
+  CheckCircle2
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -32,8 +31,9 @@ export default function GreenWallet() {
       title: "10% Grocery Discount",
       partner: "Partner: Reliance Fresh / Big Bazaar",
       points: 20,
-      icon: <ShoppingBag className="h-6 w-6" />,
-      color: "from-blue-600 to-indigo-600",
+      icon: <Percent className="h-8 w-8" />,
+      color: "bg-blue-600",
+      accentColor: "bg-blue-400/30",
       category: "GROCERIES"
     },
     {
@@ -41,8 +41,9 @@ export default function GreenWallet() {
       title: "Free Compost Bag",
       partner: "Partner: GMC Organic Initiative",
       points: 50,
-      icon: <Leaf className="h-6 w-6" />,
-      color: "from-green-600 to-emerald-600",
+      icon: <Tag className="h-8 w-8" />,
+      color: "bg-green-600",
+      accentColor: "bg-green-400/30",
       category: "ECO-FRIENDLY"
     },
     {
@@ -50,8 +51,9 @@ export default function GreenWallet() {
       title: "Municipal Tax Rebate",
       partner: "Partner: Guwahati Municipal Corp",
       points: 100,
-      icon: <FileText className="h-6 w-6" />,
-      color: "from-orange-500 to-red-500",
+      icon: <Trophy className="h-8 w-8" />,
+      color: "bg-orange-500",
+      accentColor: "bg-orange-400/30",
       category: "TAX BENEFIT"
     }
   ];
@@ -101,27 +103,38 @@ export default function GreenWallet() {
             <h2 className="text-2xl font-black tracking-tight text-[#1E293B]">Available Benefits</h2>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-6">
             {benefits.map((benefit) => (
-              <Card key={benefit.id} className="border-none shadow-[0_10px_30px_rgba(0,0,0,0.02)] rounded-[2rem] overflow-hidden group hover:shadow-[0_20px_40px_rgba(0,0,0,0.05)] transition-all">
-                <CardContent className="p-0 flex flex-col md:flex-row h-full">
-                  <div className={`w-full md:w-32 bg-gradient-to-br ${benefit.color} flex flex-col items-center justify-center p-6 text-white relative`}>
-                    <div className="text-2xl font-black">{benefit.points}</div>
-                    <div className="text-[10px] font-bold uppercase tracking-widest opacity-80">Points</div>
-                    <div className="mt-4 bg-white/20 p-2 rounded-xl">
+              <Card key={benefit.id} className="border border-white shadow-[0_15px_40px_rgba(0,0,0,0.06)] rounded-[1.5rem] overflow-hidden group hover:scale-[1.01] transition-all">
+                <CardContent className="p-0 flex h-48">
+                  {/* Left Side - Colored Block */}
+                  <div className={`w-40 ${benefit.color} flex flex-col items-center justify-center text-white relative flex-shrink-0`}>
+                    {/* Pattern Overlay */}
+                    <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_white_1px,_transparent_1px)] bg-[size:10px_10px]" />
+
+                    <div className={`${benefit.accentColor} p-4 rounded-2xl mb-3 relative z-10`}>
                       {benefit.icon}
                     </div>
+                    <div className="text-center relative z-10">
+                      <div className="text-2xl font-black leading-none">{benefit.points}</div>
+                      <div className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-80 mt-1">Points</div>
+                    </div>
+
+                    {/* Notch */}
+                    <div className="absolute top-1/2 -translate-y-1/2 -right-4 w-8 h-8 rounded-full bg-white z-20 shadow-[inset_4px_0_6px_rgba(0,0,0,0.05)]" />
                   </div>
-                  <div className="flex-1 p-6 flex flex-col justify-between">
-                    <div>
-                      <Badge variant="outline" className="text-[9px] font-black uppercase tracking-widest mb-2 border-zinc-100 text-zinc-400">
+
+                  {/* Right Side - Content Area */}
+                  <div className="flex-1 p-8 flex flex-col justify-between bg-white pl-12">
+                    <div className="space-y-1">
+                      <Badge variant="secondary" className="bg-[#E2E8F0]/40 text-[#64748B] hover:bg-[#E2E8F0]/40 border-none px-3 py-0.5 text-[9px] font-black uppercase tracking-widest">
                         {benefit.category}
                       </Badge>
-                      <h3 className="text-xl font-black text-[#1E293B]">{benefit.title}</h3>
+                      <h3 className="text-2xl font-black text-[#1E293B] tracking-tight">{benefit.title}</h3>
                       <p className="text-sm text-zinc-400 font-medium">{benefit.partner}</p>
                     </div>
 
-                    <div className="mt-6 flex items-center justify-between">
+                    <div className="flex items-center gap-4">
                       <Button
                         onClick={() => {
                           if (citizenPoints >= benefit.points) {
@@ -129,18 +142,16 @@ export default function GreenWallet() {
                           }
                         }}
                         disabled={citizenPoints < benefit.points}
-                        className={`rounded-2xl h-12 px-8 font-black text-sm uppercase tracking-widest transition-all ${citizenPoints >= benefit.points
-                          ? 'bg-green-600 hover:bg-green-700 text-white shadow-lg shadow-green-200'
+                        className={`flex-1 h-14 rounded-2xl font-black text-sm uppercase tracking-widest transition-all ${citizenPoints >= benefit.points
+                          ? 'bg-[#22C55E] hover:bg-[#16A34A] text-white shadow-[0_10px_25px_-5px_#22C55E55]'
                           : 'bg-zinc-100 text-zinc-400'
                           }`}
                       >
                         {citizenPoints >= benefit.points ? 'Redeem Voucher' : 'Insufficient Balance'}
                       </Button>
-                      {citizenPoints < benefit.points && (
-                        <span className="text-[10px] font-bold text-orange-500 uppercase tracking-widest flex items-center gap-1">
-                          <TrendingUp className="h-3 w-3" /> Needs {benefit.points - citizenPoints} more GP
-                        </span>
-                      )}
+                      <div className="w-14 h-14 border border-zinc-100 rounded-2xl flex items-center justify-center text-zinc-300 hover:bg-zinc-50 transition-colors cursor-pointer group/refresh">
+                        <ArrowRight className="h-5 w-5 rotate-[-45deg] group-hover/refresh:scale-110 transition-transform" />
+                      </div>
                     </div>
                   </div>
                 </CardContent>
