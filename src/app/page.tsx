@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useWaste } from '@/core/context/WasteContext';
 import { BackgroundAnimation } from '@/components/BackgroundAnimation';
+import { AIChatbot } from '@/components/views/AIChatbot';
 
 // Dynamically import Map to avoid SSR issues
 const Map = dynamic(() => import('@/components/Map'), {
@@ -22,6 +23,7 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-white text-zinc-900 font-sans selection:bg-green-100 selection:text-green-900 relative">
       <BackgroundAnimation />
+      <AIChatbot />
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-zinc-100 px-6 py-4 flex justify-between items-center">
         <div className="flex items-center gap-2">
