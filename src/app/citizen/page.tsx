@@ -2,18 +2,18 @@
 
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
-import { useWaste } from '@/context/WasteContext';
-import CitizenView from '@/components/CitizenView';
-import GreenWallet from '@/components/GreenWallet';
-import { SDGLogo } from '@/components/SDGLogo';
-import { YuktiLogo } from '@/components/YuktiLogo';
+import { useWaste } from '@/core/context/WasteContext';
+import CitizenView from '@/components/views/CitizenView';
+import GreenWallet from '@/components/views/GreenWallet';
+import { SDGLogo } from '@/components/logos/SDGLogo';
+import { YuktiLogo } from '@/components/logos/YuktiLogo';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { MapPin, ArrowLeft, Coins, Wallet, Map as MapIcon, LayoutGrid } from 'lucide-react';
 import Link from 'next/link';
 
 // Dynamically import Map to avoid SSR issues
-const Map = dynamic(() => import('@/components/Map'), { 
+const Map = dynamic(() => import('@/components/Map'), {
   ssr: false,
   loading: () => <div className="h-full w-full bg-zinc-100 animate-pulse flex items-center justify-center">Loading Interactive Map...</div>
 });
@@ -31,7 +31,7 @@ export default function CitizenPage() {
             <span className="font-black text-sm uppercase tracking-tighter text-green-600">YUKTI</span>
           </div>
           <div className="flex items-center gap-4">
-            <button 
+            <button
               onClick={() => setActiveView('map')}
               className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-green-600 transition-colors"
             >
@@ -55,7 +55,7 @@ export default function CitizenPage() {
       <div className="w-full md:w-[450px] h-[60vh] md:h-full z-10 bg-white shadow-2xl flex flex-col border-r border-zinc-200">
         <header className="shrink-0 p-6 border-b bg-zinc-900 text-white relative">
           <div className="absolute top-6 right-6 flex items-center gap-4">
-            <button 
+            <button
               onClick={() => setActiveView('wallet')}
               className="text-zinc-400 hover:text-green-400 transition-colors"
               title="Green Wallet"
@@ -66,13 +66,13 @@ export default function CitizenPage() {
               <ArrowLeft className="h-5 w-5" />
             </Link>
           </div>
-            <div className="flex items-center gap-2 mb-1">
-              <YuktiLogo className="h-8 w-8" />
-              <h1 className="text-2xl font-black tracking-tight uppercase italic text-green-600">YUKTI</h1>
-            </div>
+          <div className="flex items-center gap-2 mb-1">
+            <YuktiLogo className="h-8 w-8" />
+            <h1 className="text-2xl font-black tracking-tight uppercase italic text-green-600">YUKTI</h1>
+          </div>
 
           <p className="text-zinc-500 text-[10px] font-bold tracking-[0.2em] uppercase">Citizen Initiative • SDG 12</p>
-          
+
           <div className="mt-4 bg-white/10 rounded-2xl px-4 py-3 flex items-center justify-between border border-white/5">
             <div className="flex flex-col">
               <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">Earned Rewards</span>

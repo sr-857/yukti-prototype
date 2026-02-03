@@ -19,15 +19,15 @@ src/
 │   ├── citizen/          # Citizen dashboard & pickup flow
 │   ├── collector/        # Collector mission control
 │   └── layout.tsx        # Global providers & root layout
-├── components/           # Reorganized Component Library
+├── components/           # UI Component Library
 │   ├── ui/               # Primary UI primitives (Shadcn/UI)
 │   ├── logos/            # Branding & SDG assets
 │   ├── views/            # Domain-specific page views
 │   └── Map.tsx           # Interactive Leaflet Map Engine
-├── context/              # Centralized State Management (WasteContext)
-├── hooks/                # Custom React Hooks
-├── lib/                  # Utilities & Routing Algorithms
-│   └── utils/            # Greedy Nearest Neighbor logic
+├── core/                 # Internal Business Logic & State
+│   ├── context/          # Centralized State Management
+│   ├── hooks/            # Custom React Hooks
+│   └── lib/              # Utilities & Optimization Engines
 └── public/               # Static assets & Localized SDG images
 ```
 

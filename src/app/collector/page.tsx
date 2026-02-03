@@ -2,16 +2,16 @@
 
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
-import { useWaste } from '@/context/WasteContext';
-import CollectorView from '@/components/CollectorView';
-import { SDGLogo } from '@/components/SDGLogo';
+import { useWaste } from '@/core/context/WasteContext';
+import CollectorView from '@/components/views/CollectorView';
+import { SDGLogo } from '@/components/logos/SDGLogo';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Truck, Ruler, Clock, ArrowLeft, ShieldCheck } from 'lucide-react';
 import Link from 'next/link';
 
 // Dynamically import Map to avoid SSR issues
-const Map = dynamic(() => import('@/components/Map'), { 
+const Map = dynamic(() => import('@/components/Map'), {
   ssr: false,
   loading: () => <div className="h-full w-full bg-zinc-100 animate-pulse flex items-center justify-center">Loading Interactive Map...</div>
 });
@@ -25,31 +25,31 @@ export default function CollectorPage() {
   };
 
   return (
-<div className="relative h-screen w-full flex flex-col md:flex-row bg-zinc-50 overflow-hidden">
-{/* Sidebar Panel */}
-<div className="w-full md:w-[450px] h-[60vh] md:h-full z-10 bg-white shadow-2xl flex flex-col border-r border-zinc-200">
-<header className="shrink-0 p-6 border-b bg-indigo-950 text-white relative">
-<Link href="/" className="absolute top-6 right-6 text-indigo-400 hover:text-white transition-colors">
-<ArrowLeft className="h-5 w-5" />
-</Link>
-<div className="flex items-center gap-2 mb-1">
-<SDGLogo className="h-8 w-8" />
-<h1 className="text-2xl font-black tracking-tight uppercase italic text-white">YUKTI</h1>
-</div>
-<div className="flex items-center gap-2 mt-1 opacity-60">
-<ShieldCheck className="h-3 w-3" />
-<p className="text-[10px] font-bold tracking-[0.2em] uppercase">Guwahati Urban Ward Cmd</p>
-</div>
-</header>
+    <div className="relative h-screen w-full flex flex-col md:flex-row bg-zinc-50 overflow-hidden">
+      {/* Sidebar Panel */}
+      <div className="w-full md:w-[450px] h-[60vh] md:h-full z-10 bg-white shadow-2xl flex flex-col border-r border-zinc-200">
+        <header className="shrink-0 p-6 border-b bg-indigo-950 text-white relative">
+          <Link href="/" className="absolute top-6 right-6 text-indigo-400 hover:text-white transition-colors">
+            <ArrowLeft className="h-5 w-5" />
+          </Link>
+          <div className="flex items-center gap-2 mb-1">
+            <SDGLogo className="h-8 w-8" />
+            <h1 className="text-2xl font-black tracking-tight uppercase italic text-white">YUKTI</h1>
+          </div>
+          <div className="flex items-center gap-2 mt-1 opacity-60">
+            <ShieldCheck className="h-3 w-3" />
+            <p className="text-[10px] font-bold tracking-[0.2em] uppercase">Guwahati Urban Ward Cmd</p>
+          </div>
+        </header>
 
-<div className="flex-1 min-h-0">
-<CollectorView onRouteGenerated={handleRouteGenerated} />
-</div>
-</div>
+        <div className="flex-1 min-h-0">
+          <CollectorView onRouteGenerated={handleRouteGenerated} />
+        </div>
+      </div>
 
-{/* Main Map Area */}
-<div className="flex-1 relative h-[40vh] md:h-full">
-<Map pickups={pickups} />
+      {/* Main Map Area */}
+      <div className="flex-1 relative h-[40vh] md:h-full">
+        <Map pickups={pickups} />
 
 
         {/* Route Stats Overlay */}

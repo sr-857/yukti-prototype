@@ -3,12 +3,12 @@
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
-import { SDGLogo } from '@/components/SDGLogo';
-import { YuktiLogo } from '@/components/YuktiLogo';
+import { SDGLogo } from '@/components/logos/SDGLogo';
+import { YuktiLogo } from '@/components/logos/YuktiLogo';
 import { MapPin, Truck, ShieldCheck, Zap, Globe, ArrowRight, Coins, Recycle, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { useWaste } from '@/context/WasteContext';
+import { useWaste } from '@/core/context/WasteContext';
 
 // Dynamically import Map to avoid SSR issues
 const Map = dynamic(() => import('@/components/Map'), {

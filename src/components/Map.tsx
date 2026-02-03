@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { PickupRequest, WasteType, useWaste } from '@/context/WasteContext';
+import { PickupRequest, WasteType, useWaste } from '@/core/context/WasteContext';
 
 // Fix for default marker icons
 const DefaultIcon = L.icon({
@@ -70,9 +70,9 @@ function LandingAnimation() {
   return null;
 }
 
-export default function Map({ 
-  center = [26.1445, 91.7362], 
-  zoom = 13, 
+export default function Map({
+  center = [26.1445, 91.7362],
+  zoom = 13,
   pickups,
   route,
   isLanding = false
@@ -89,9 +89,9 @@ export default function Map({
   const displayRoute = route || activeRoute;
 
   return (
-    <MapContainer 
-      center={center} 
-      zoom={zoom} 
+    <MapContainer
+      center={center}
+      zoom={zoom}
       style={{ height: '100%', width: '100%' }}
       scrollWheelZoom={!isLanding}
       zoomControl={!isLanding}
@@ -103,10 +103,10 @@ export default function Map({
       />
       {!isLanding && <ChangeView center={center} zoom={zoom} />}
       {isLanding && <LandingAnimation />}
-      
+
       {pickups.map((pickup) => (
-        <Marker 
-          key={pickup.id} 
+        <Marker
+          key={pickup.id}
           position={[pickup.lat, pickup.lng]}
           icon={getMarkerIcon(pickup.type, pickup.status)}
         >
@@ -132,9 +132,9 @@ export default function Map({
       )}
 
       {displayRoute && displayRoute.length > 0 && (
-        <Polyline 
-          positions={displayRoute} 
-          pathOptions={{ color: '#6366f1', weight: 4, opacity: 0.7, dashArray: '10, 10' }} 
+        <Polyline
+          positions={displayRoute}
+          pathOptions={{ color: '#6366f1', weight: 4, opacity: 0.7, dashArray: '10, 10' }}
         />
       )}
     </MapContainer>

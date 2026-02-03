@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from 'react';
-import { useWaste, PickupRequest, WASTE_RATES } from '@/context/WasteContext';
-import { SDGLogo } from '@/components/SDGLogo';
-import { YuktiLogo } from '@/components/YuktiLogo';
+import { useWaste, PickupRequest, WASTE_RATES } from '@/core/context/WasteContext';
+import { SDGLogo } from '@/components/logos/SDGLogo';
+import { YuktiLogo } from '@/components/logos/YuktiLogo';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { nearestNeighbor, Point, getTotalDistance } from '@/lib/utils/routing';
+import { nearestNeighbor, Point, getTotalDistance } from '@/core/lib/utils/routing';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Play, CheckCircle2, Navigation, Target, MapPin, Coins, TrendingUp } from 'lucide-react';
 
@@ -27,7 +27,7 @@ export default function CollectorView({ onRouteGenerated }: CollectorViewProps) 
     setIsTravelling(true);
     for (let i = 0; i < route.length; i++) {
       setCollectorLocation(route[i]);
-      
+
       const atPickup = pendingPickups.find(p => p.lat === route[i][0] && p.lng === route[i][1]);
       if (atPickup) {
         setCurrentDestination(atPickup);
@@ -35,7 +35,7 @@ export default function CollectorView({ onRouteGenerated }: CollectorViewProps) 
         markAsPicked(atPickup.id);
         setCurrentDestination(null);
       }
-      
+
       await new Promise(resolve => setTimeout(resolve, 1500));
     }
     setIsTravelling(false);
@@ -51,10 +51,10 @@ export default function CollectorView({ onRouteGenerated }: CollectorViewProps) 
 
     const start: Point = { lat: 26.1445, lng: 91.7362, id: 'START' };
     const points: Point[] = pendingPickups.map(p => ({ lat: p.lat, lng: p.lng, id: p.id }));
-    
+
     const optimizedPath = nearestNeighbor(start, points);
     const distance = getTotalDistance(optimizedPath);
-    const estimatedTime = distance * 5; 
+    const estimatedTime = distance * 5;
 
     const routeCoords: [number, number][] = optimizedPath.map(p => [p.lat, p.lng]);
     setActiveRoute(routeCoords);
@@ -130,27 +130,25 @@ export default function CollectorView({ onRouteGenerated }: CollectorViewProps) 
                 const isTarget = currentDestination?.id === pickup.id;
                 const bid = WASTE_RATES[pickup.type];
                 return (
-                  <div 
-                    key={pickup.id} 
-                    className={`group relative p-4 rounded-2xl border transition-all duration-500 flex justify-between items-center ${
-                      isTarget 
-                        ? 'bg-indigo-50 border-indigo-300 shadow-lg scale-[1.02] z-10' 
-                        : pickup.status === 'picked' 
-                          ? 'bg-zinc-100/50 border-zinc-200 opacity-50 grayscale' 
-                          : 'bg-white shadow-sm border-zinc-200 hover:border-indigo-200 hover:shadow-md'
-                    }`}
+                  <div
+                    key={pickup.id}
+                    className={`group relative p-4 rounded-2xl border transition-all duration-500 flex justify-between items-center ${isTarget
+                      ? 'bg-indigo-50 border-indigo-300 shadow-lg scale-[1.02] z-10'
+                      : pickup.status === 'picked'
+                        ? 'bg-zinc-100/50 border-zinc-200 opacity-50 grayscale'
+                        : 'bg-white shadow-sm border-zinc-200 hover:border-indigo-200 hover:shadow-md'
+                      }`}
                   >
                     {isTarget && (
                       <div className="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-12 bg-indigo-500 rounded-full" />
                     )}
-                    
+
                     <div className="space-y-2 flex-1">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <div className={`w-3 h-3 rounded-full shadow-inner ${
-                            pickup.type === 'wet' ? 'bg-green-500' : 
+                          <div className={`w-3 h-3 rounded-full shadow-inner ${pickup.type === 'wet' ? 'bg-green-500' :
                             pickup.type === 'dry' ? 'bg-blue-500' : 'bg-red-500'
-                          }`} />
+                            }`} />
                           <span className="font-black text-[9px] tracking-[0.2em] uppercase text-zinc-400">{pickup.type} WASTE</span>
                         </div>
                         {pickup.status === 'pending' && (
@@ -173,18 +171,17 @@ export default function CollectorView({ onRouteGenerated }: CollectorViewProps) 
                         </span>
                       </div>
                     </div>
-                    
+
                     <div className="ml-4 shrink-0">
                       {pickup.status === 'pending' ? (
-                        <Button 
-                          size="sm" 
+                        <Button
+                          size="sm"
                           variant={isTarget ? "default" : "ghost"}
                           onClick={() => markAsPicked(pickup.id)}
-                          className={`rounded-full h-10 w-10 p-0 ${
-                            isTarget 
-                              ? 'bg-indigo-600 hover:bg-indigo-700 shadow-indigo-200 shadow-lg' 
-                              : 'text-zinc-300 hover:text-green-600 hover:bg-green-50 border-2 border-dashed border-zinc-100'
-                          }`}
+                          className={`rounded-full h-10 w-10 p-0 ${isTarget
+                            ? 'bg-indigo-600 hover:bg-indigo-700 shadow-indigo-200 shadow-lg'
+                            : 'text-zinc-300 hover:text-green-600 hover:bg-green-50 border-2 border-dashed border-zinc-100'
+                            }`}
                           disabled={isTravelling && !isTarget}
                         >
                           <CheckCircle2 className="h-5 w-5" />
@@ -205,7 +202,7 @@ export default function CollectorView({ onRouteGenerated }: CollectorViewProps) 
 
       <div className="grid grid-cols-1 gap-3 pt-2">
         {!activeRoute ? (
-          <Button 
+          <Button
             onClick={handleGenerateRoute}
             disabled={pendingPickups.length === 0}
             className="w-full bg-indigo-700 hover:bg-indigo-800 text-white h-16 text-lg font-black italic uppercase tracking-tighter shadow-2xl shadow-indigo-200 rounded-2xl group transition-all"
@@ -215,7 +212,7 @@ export default function CollectorView({ onRouteGenerated }: CollectorViewProps) 
             </span>
           </Button>
         ) : (
-          <Button 
+          <Button
             onClick={handleStartTrip}
             disabled={isTravelling}
             className="w-full bg-black hover:bg-zinc-900 text-white h-16 text-lg font-black italic uppercase tracking-tighter shadow-2xl shadow-zinc-200 rounded-2xl group transition-all overflow-hidden relative"
@@ -224,7 +221,7 @@ export default function CollectorView({ onRouteGenerated }: CollectorViewProps) 
               <div className="absolute inset-0 bg-indigo-600/20 animate-pulse" />
             )}
             <span className="relative z-10 flex items-center gap-3">
-              <Play className={`h-6 w-6 fill-current ${isTravelling ? 'animate-pulse' : ''}`} /> 
+              <Play className={`h-6 w-6 fill-current ${isTravelling ? 'animate-pulse' : ''}`} />
               {isTravelling ? 'Executing Trip...' : 'Start Collection'}
             </span>
           </Button>

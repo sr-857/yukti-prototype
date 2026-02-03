@@ -1,9 +1,9 @@
 "use client";
 
 import React from 'react';
-import { useWaste } from '@/context/WasteContext';
-import { YuktiLogo } from '@/components/YuktiLogo';
-import { SDGLogo } from '@/components/SDGLogo';
+import { useWaste } from '@/core/context/WasteContext';
+import { YuktiLogo } from '@/components/logos/YuktiLogo';
+import { SDGLogo } from '@/components/logos/SDGLogo';
 import {
   Coins,
   ShoppingBag,
@@ -130,8 +130,8 @@ export default function GreenWallet() {
                         }}
                         disabled={citizenPoints < benefit.points}
                         className={`rounded-2xl h-12 px-8 font-black text-sm uppercase tracking-widest transition-all ${citizenPoints >= benefit.points
-                            ? 'bg-green-600 hover:bg-green-700 text-white shadow-lg shadow-green-200'
-                            : 'bg-zinc-100 text-zinc-400'
+                          ? 'bg-green-600 hover:bg-green-700 text-white shadow-lg shadow-green-200'
+                          : 'bg-zinc-100 text-zinc-400'
                           }`}
                       >
                         {citizenPoints >= benefit.points ? 'Redeem Voucher' : 'Insufficient Balance'}

@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from 'react';
-import { useWaste, WasteType, WASTE_RATES, WASTE_DESCRIPTIONS } from '@/context/WasteContext';
-import { SDGLogo } from '@/components/SDGLogo';
-import { YuktiLogo } from '@/components/YuktiLogo';
+import { useWaste, WasteType, WASTE_RATES, WASTE_DESCRIPTIONS } from '@/core/context/WasteContext';
+import { SDGLogo } from '@/components/logos/SDGLogo';
+import { YuktiLogo } from '@/components/logos/YuktiLogo';
 import {
   Trash2,
   Truck,
@@ -35,7 +35,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { cn } from '@/lib/utils';
+import { cn } from '@/core/lib/utils';
 
 export default function CitizenView() {
   const { households, addPickup, reportBinOverflow, pickups, citizenPoints, collectorLocation } = useWaste();

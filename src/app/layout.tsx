@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { WasteProvider } from "@/context/WasteContext";
+import { WasteProvider } from "@/core/context/WasteContext";
 
 export const metadata: Metadata = {
   title: "YUKTI",

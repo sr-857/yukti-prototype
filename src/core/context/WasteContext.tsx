@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import householdData from '@/lib/data/households.json';
+import householdData from '@/core/lib/data/households.json';
 
 export type WasteType = 'wet' | 'dry' | 'e-waste';
 export type Status = 'pending' | 'picked';
@@ -137,21 +137,21 @@ export function WasteProvider({ children }: { children: React.ReactNode }) {
   };
 
   const markAsPicked = (pickupId: string) => {
-    setPickups(prev => prev.map(p => 
+    setPickups(prev => prev.map(p =>
       p.id === pickupId ? { ...p, status: 'picked' as Status } : p
     ));
     setCitizenPoints(prev => prev + 10);
   };
 
   return (
-    <WasteContext.Provider value={{ 
-      pickups, 
+    <WasteContext.Provider value={{
+      pickups,
       binOverflows,
-      households, 
-      addPickup, 
+      households,
+      addPickup,
       reportBinOverflow,
       cancelPickup,
-      markAsPicked, 
+      markAsPicked,
       citizenPoints,
       collectorLocation,
       setCollectorLocation,
