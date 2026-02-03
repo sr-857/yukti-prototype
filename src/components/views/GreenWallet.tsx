@@ -105,36 +105,36 @@ export default function GreenWallet() {
 
           <div className="space-y-6">
             {benefits.map((benefit) => (
-              <Card key={benefit.id} className="border border-white shadow-[0_15px_40px_rgba(0,0,0,0.06)] rounded-[1.5rem] overflow-hidden group hover:scale-[1.01] transition-all">
-                <CardContent className="p-0 flex h-48">
+              <Card key={benefit.id} className="border border-white/50 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.08)] rounded-[2.5rem] overflow-hidden group hover:scale-[1.01] transition-all duration-300">
+                <CardContent className="p-0 flex h-52">
                   {/* Left Side - Colored Block */}
-                  <div className={`w-40 ${benefit.color} flex flex-col items-center justify-center text-white relative flex-shrink-0`}>
+                  <div className={`w-44 ${benefit.color} flex flex-col items-center justify-center text-white relative flex-shrink-0`}>
                     {/* Pattern Overlay */}
                     <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_white_1px,_transparent_1px)] bg-[size:10px_10px]" />
 
-                    <div className={`${benefit.accentColor} p-4 rounded-2xl mb-3 relative z-10`}>
+                    <div className={`${benefit.accentColor} p-5 rounded-[2rem] mb-3 relative z-10 shadow-inner`}>
                       {benefit.icon}
                     </div>
                     <div className="text-center relative z-10">
-                      <div className="text-2xl font-black leading-none">{benefit.points}</div>
-                      <div className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-80 mt-1">Points</div>
+                      <div className="text-3xl font-black leading-none tracking-tighter">{benefit.points}</div>
+                      <div className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-80 mt-1.5">Points</div>
                     </div>
 
-                    {/* Notch */}
-                    <div className="absolute top-1/2 -translate-y-1/2 -right-4 w-8 h-8 rounded-full bg-white z-20 shadow-[inset_4px_0_6px_rgba(0,0,0,0.05)]" />
+                    {/* Notch - Smoother Integration */}
+                    <div className="absolute top-1/2 -translate-y-1/2 -right-5 w-10 h-10 rounded-full bg-white z-20 shadow-[inset_4px_0_10px_rgba(0,0,0,0.08)]" />
                   </div>
 
                   {/* Right Side - Content Area */}
-                  <div className="flex-1 p-8 flex flex-col justify-between bg-white pl-12">
-                    <div className="space-y-1">
-                      <Badge variant="secondary" className="bg-[#E2E8F0]/40 text-[#64748B] hover:bg-[#E2E8F0]/40 border-none px-3 py-0.5 text-[9px] font-black uppercase tracking-widest">
+                  <div className="flex-1 p-10 flex flex-col justify-between bg-white pl-14">
+                    <div className="space-y-1.5">
+                      <Badge variant="secondary" className="bg-[#F1F5F9] text-[#64748B] hover:bg-[#F1F5F9] border-none px-4 py-1 text-[9px] font-black uppercase tracking-widest rounded-full">
                         {benefit.category}
                       </Badge>
-                      <h3 className="text-2xl font-black text-[#1E293B] tracking-tight">{benefit.title}</h3>
-                      <p className="text-sm text-zinc-400 font-medium">{benefit.partner}</p>
+                      <h3 className="text-3xl font-black text-[#1E293B] tracking-tight leading-tight">{benefit.title}</h3>
+                      <p className="text-zinc-400 font-bold tracking-tight">{benefit.partner}</p>
                     </div>
 
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-5 pt-4">
                       <Button
                         onClick={() => {
                           if (citizenPoints >= benefit.points) {
@@ -142,15 +142,15 @@ export default function GreenWallet() {
                           }
                         }}
                         disabled={citizenPoints < benefit.points}
-                        className={`flex-1 h-14 rounded-2xl font-black text-sm uppercase tracking-widest transition-all ${citizenPoints >= benefit.points
-                          ? 'bg-[#22C55E] hover:bg-[#16A34A] text-white shadow-[0_10px_25px_-5px_#22C55E55]'
-                          : 'bg-zinc-100 text-zinc-400'
+                        className={`flex-1 h-16 rounded-[1.8rem] font-black text-xs uppercase tracking-[0.15em] transition-all duration-300 ${citizenPoints >= benefit.points
+                          ? 'bg-[#22C55E] hover:bg-[#16A34A] text-white shadow-[0_15px_30px_-5px_rgba(34,197,94,0.4)] hover:translate-y-[-2px]'
+                          : 'bg-[#F8FAFC] text-zinc-300 border border-zinc-100/50 shadow-inner cursor-not-allowed uppercase'
                           }`}
                       >
                         {citizenPoints >= benefit.points ? 'Redeem Voucher' : 'Insufficient Balance'}
                       </Button>
-                      <div className="w-14 h-14 border border-zinc-100 rounded-2xl flex items-center justify-center text-zinc-300 hover:bg-zinc-50 transition-colors cursor-pointer group/refresh">
-                        <ArrowRight className="h-5 w-5 rotate-[-45deg] group-hover/refresh:scale-110 transition-transform" />
+                      <div className="w-16 h-16 border border-[#F1F5F9] rounded-[1.8rem] flex items-center justify-center text-zinc-300 hover:bg-[#F8FAFC] transition-all cursor-pointer group/refresh shadow-sm">
+                        <ArrowRight className="h-6 w-6 rotate-[-45deg] group-hover/refresh:scale-110 transition-transform" />
                       </div>
                     </div>
                   </div>
