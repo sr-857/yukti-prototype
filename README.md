@@ -13,12 +13,18 @@
 [![Next.js 15](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 
+<div align="center">
+
 ```ascii
 ╔════════════════════════════════════════════════════════════╗
 ║  YUKTI: Where Technology Meets Sustainability              ║
 ║  Transform your city's waste crisis into circular economy  ║
 ╚════════════════════════════════════════════════════════════╝
 ```
+
+
+
+</div>
 
 
 [🎯 Problem](#-the-guwahati-waste-crisis) • [💡 Solution](#-our-solution) • [🏗️ Architecture](#-system-architecture) • [🚀 Quick Start](#-quick-start) • [📊 Impact](#-measurable-impact)
