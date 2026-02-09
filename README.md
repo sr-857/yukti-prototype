@@ -14,11 +14,12 @@
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 
 ```ascii
-┌─────────────────────────────────────────────────────────────────┐
-│  "युक्ति" (Yukti) = Strategy · Solution · Intelligence          │
-│  Transforming Guwahati's waste crisis into circular opportunity  │
-└─────────────────────────────────────────────────────────────────┘
+╔════════════════════════════════════════════════════════════╗
+║  YUKTI: Where Technology Meets Sustainability              ║
+║  Transform your city's waste crisis into circular economy  ║
+╚════════════════════════════════════════════════════════════╝
 ```
+
 
 [🎯 Problem](#-the-guwahati-waste-crisis) • [💡 Solution](#-our-solution) • [🏗️ Architecture](#-system-architecture) • [🚀 Quick Start](#-quick-start) • [📊 Impact](#-measurable-impact)
 
