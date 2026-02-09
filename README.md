@@ -15,14 +15,12 @@
 
 <div align="center">
 
-```ascii
+```
 ╔════════════════════════════════════════════════════════════╗
 ║  YUKTI: Where Technology Meets Sustainability              ║
 ║  Transform your city's waste crisis into circular economy  ║
 ╚════════════════════════════════════════════════════════════╝
 ```
-
-
 
 </div>
 
